@@ -4,7 +4,7 @@ function Start() {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		navigate('/random');
+		navigate('/categories');
 	};
 
 	return <button onClick={handleClick}>Start Quiz</button>;

@@ -1,3 +1,55 @@
 .App {
 	text-align: center;
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.header {
+	height: 100px;
+	background-color: lightgray;
+	color: darkolivegreen;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.header__title {
+	margin: 0;
+}
+.wrapper {
+	display: flex;
+	flex-grow: 1;
+	padding: 0 100px;
+	flex-direction: column;
+}
+.categories {
+	align-self: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: center;
+	gap: 20px;
+	flex-grow: 1;
+}
+.categories__item {
+}
+.category {
+	display: flex;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #333;
+	border-radius: 2px;
+	text-align: center;
+	color: #333;
+	justify-content: center;
+	cursor: pointer;
+}
+.category:hover {
+	background-color: #eee;
+}
+.category__title {
+	align-self: center;
+	margin: 0;
 }
