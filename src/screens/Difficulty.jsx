@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Difficulty() {
 	const [difficultyLevel, setDifficultyLevel] = useState('');
 	const [limitQuestions, setLimitQuestions] = useState('');
 	const navigate = useNavigate();
+	const category = useSelector((state) => state.category.category);
 
 	const limits = [];
 	let i = 0;
@@ -36,7 +38,7 @@ function Difficulty() {
 
 	return (
 		<div className="difficulty">
-			<h2></h2>
+			<h2>{category}</h2>
 			<div>
 				<label htmlFor="difficulty">Choose difficulty level:</label>
 				<select
