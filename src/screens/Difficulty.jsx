@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLimit, setDifficulty } from '../store/requestParamsSlice';
 
 function Difficulty() {
 	const [difficultyLevel, setDifficultyLevel] = useState('');
 	const [limitQuestions, setLimitQuestions] = useState('');
 	const navigate = useNavigate();
-	const category = useSelector((state) => state.category.category);
+	const category = useSelector((state) => state.requestParams.category);
+	const dispatch = useDispatch();
 
 	const limits = [];
 	let i = 0;
@@ -23,17 +25,17 @@ function Difficulty() {
 	];
 
 	const handleChangeLimit = (e) => {
-		console.log(e.target.value);
 		setLimitQuestions(e.target.value);
+		dispatch(setLimit({ limit: e.target.value }));
 	};
 
 	const handleChangeLevel = (e) => {
-		console.log(e.target.value);
 		setDifficultyLevel(e.target.value);
+		dispatch(setDifficulty({ difficulty: e.target.value }));
 	};
 
 	const handleClick = () => {
-		navigate('/categories');
+		navigate('/questions');
 	};
 
 	return (

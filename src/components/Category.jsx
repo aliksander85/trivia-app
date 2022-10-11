@@ -1,14 +1,18 @@
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setCategory } from '../store/categorySlice';
+import { setCategory, setCategoryKey } from '../store/requestParamsSlice';
 
 function Category(props) {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const handleClick = () => {
 		dispatch(setCategory({ category: props.category }));
-		navigate('/difficulty');
+		dispatch(
+			setCategoryKey({
+				categoryKey: props.category
+					.replace(' & ', '_and_')
+					.toLowerCase(),
+			})
+		);
 	};
 
 	return (

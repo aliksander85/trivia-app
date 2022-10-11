@@ -4,6 +4,7 @@ import RandomPage from './screens/RandomPage';
 import Categories from './screens/Categories';
 import Difficulty from './screens/Difficulty';
 import Header from './components/Header';
+import Questions from './screens/Questions';
 
 function App() {
 	const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
 		{
 			path: '/difficulty',
 			element: <Difficulty />,
+		},
+		{
+			path: '/questions',
+			element: <Questions />,
 		},
 	]);
 

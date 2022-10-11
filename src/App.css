@@ -17,6 +17,10 @@
 .header__title {
 	margin: 0;
 }
+.title__link {
+	text-decoration: none;
+	color: inherit;
+}
 .wrapper {
 	display: flex;
 	flex-grow: 1;
@@ -33,7 +37,27 @@
 	gap: 20px;
 	flex-grow: 1;
 }
-.categories__item {
+/* .categories__item {
+} */
+.button-wrapper {
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+.main-button {
+	display: flex;
+	color: white;
+	background-color: blue;
+	text-align: center;
+	border: none;
+	border-radius: 2px;
+	padding: 10px;
+	cursor: pointer;
+}
+.main-button:hover {
+	background-color: #0000aa;
 }
 .category {
 	display: flex;
