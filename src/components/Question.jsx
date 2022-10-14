@@ -1,23 +1,57 @@
-import { useEffect, useState } from 'react';
-import useShuffle from '../utils/useShuffle';
+import { useState } from 'react';
 
-function Question(props) {
-	const [answers, setAnswers] = useState([]);
-	const shuffled = useShuffle(
-		props.question.incorrectAnswers,
-		props.question.correctAnswer
-	);
-	useEffect(() => {
-		setAnswers(shuffled);
-	}, [shuffled]);
+function Question({
+	setIsFinish,
+	answers,
+	setScore,
+	number,
+	setQuestion,
+	questionsLength,
+	question,
+}) {
+	const [currentAnswer, setCurrentAnswer] = useState('');
+
+	const handleClickAnswer = (answer) => {
+		setCurrentAnswer(answer);
+	};
+
+	const handleClickNext = () => {
+		if (currentAnswer === question.correctAnswer) {
+			setScore((prevScore) => prevScore + 1);
+		}
+		if (number < questionsLength - 1) {
+			console.log('setQuestion');
+			setQuestion((current) => current + 1);
+		}
+		if (number === questionsLength - 1) {
+			setIsFinish(true);
+		}
+	};
 
 	return (
-		<div className="question">
-			<p>Q: {props.question.question}</p>
-			{answers.map((answer, i) => (
-				<p key={answer + i}>{answer}</p>
-			))}
-		</div>
+		<>
+			<h2 className="question-card__title">{question.question}</h2>
+			<ul className="question-card__list answers">
+				{answers.map((answer) => (
+					<li
+						className={
+							'answers__item answer ' +
+							(answer === currentAnswer ? 'selected' : '')
+						}
+						key={answer}
+						onClick={() => handleClickAnswer(answer)}
+					>
+						{answer}
+					</li>
+				))}
+			</ul>
+			<p>
+				Question {number + 1}/{questionsLength}
+			</p>
+			<button onClick={handleClickNext}>
+				{number >= questionsLength - 1 ? 'Finish' : 'Next'}
+			</button>
+		</>
 	);
 }
 

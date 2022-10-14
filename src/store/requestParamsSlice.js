@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const requestParamsSlice = createSlice({
 	name: 'requestParams',
 	initialState: {
-		limit: '',
-		difficulty: '',
+		limit: '5',
+		difficulty: 'easy',
 		category: '',
 		categoryKey: '',
 	},

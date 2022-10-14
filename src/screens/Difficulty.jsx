@@ -1,28 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLimit, setDifficulty } from '../store/requestParamsSlice';
 
 function Difficulty() {
-	const [difficultyLevel, setDifficultyLevel] = useState('');
-	const [limitQuestions, setLimitQuestions] = useState('');
+	const [difficultyLevel, setDifficultyLevel] = useState('easy');
+	const [limitQuestions, setLimitQuestions] = useState(1);
 	const navigate = useNavigate();
 	const category = useSelector((state) => state.requestParams.category);
 	const dispatch = useDispatch();
 
 	const limits = [];
-	let i = 0;
+	let i = 1;
 	while (i < 20) {
-		limits.push({ value: i, text: i });
+		const option = { value: i, text: i };
+		limits.push(option);
 		i++;
 	}
 
 	const levels = [
-		{ value: '', text: '--Choose an option--' },
 		{ value: 'easy', text: 'easy' },
 		{ value: 'medium', text: 'medium' },
 		{ value: 'hard', text: 'hard' },
 	];
+
+	useEffect(() => {
+		setLimitQuestions(5);
+	}, []);
 
 	const handleChangeLimit = (e) => {
 		setLimitQuestions(e.target.value);
@@ -35,7 +39,7 @@ function Difficulty() {
 	};
 
 	const handleClick = () => {
-		navigate('/questions');
+		navigate('/quiz');
 	};
 
 	return (
