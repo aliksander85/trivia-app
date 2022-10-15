@@ -99,3 +99,8 @@
 .answer.selected {
 	background-color: #555;
 }
+
+.footer {
+	height: 100px;
+	background-color: lightgray;
+}
