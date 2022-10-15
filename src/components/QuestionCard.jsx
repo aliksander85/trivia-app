@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Score from '../components/Score';
+import Score from '../screens/Score';
 import Question from './Question';
 
 function QuestionCard({ question, setQuestion, questionsLength, number }) {

@@ -10,16 +10,18 @@ function Questions() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const limit = useSelector((state) => state.requestParams.limit);
 	const difficulty = useSelector((state) => state.requestParams.difficulty);
-	const categoryKey = useSelector((state) => state.requestParams.categoryKey);
+	const categoryKeys = useSelector(
+		(state) => state.requestParams.categoryKeys
+	);
 
 	useEffect(() => {
-		getQuestions({ limit, difficulty, categoryKey }).then((data) => {
+		getQuestions({ limit, difficulty, categoryKeys }).then((data) => {
 			// TODO: works twice, need to reduce
 			console.log('data', data);
 			setQuestions(data);
 			dispatch(setQuestionsData({ questionsData: data }));
 		});
-	}, [limit, difficulty, categoryKey, dispatch]);
+	}, [limit, difficulty, categoryKeys, dispatch]);
 
 	return (
 		<>

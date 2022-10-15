@@ -7,7 +7,7 @@ function Difficulty() {
 	const [difficultyLevel, setDifficultyLevel] = useState('easy');
 	const [limitQuestions, setLimitQuestions] = useState(1);
 	const navigate = useNavigate();
-	const category = useSelector((state) => state.requestParams.category);
+	const categories = useSelector((state) => state.requestParams.categories);
 	const dispatch = useDispatch();
 
 	const limits = [];
@@ -44,7 +44,7 @@ function Difficulty() {
 
 	return (
 		<div className="difficulty">
-			<h2>{category}</h2>
+			<h2>Categories: {categories.join(', ')}</h2>
 			<div>
 				<label htmlFor="difficulty">Choose difficulty level:</label>
 				<select

@@ -1,13 +1,14 @@
-import { useDispatch } from 'react-redux';
-import { setCategory, setCategoryKey } from '../store/requestParamsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategories, setCategoryKeys } from '../store/requestParamsSlice';
 
 function Category(props) {
 	const dispatch = useDispatch();
+	const categories = useSelector((state) => state.requestParams.categories);
 
 	const handleClick = () => {
-		dispatch(setCategory({ category: props.category }));
+		dispatch(setCategories({ category: props.category }));
 		dispatch(
-			setCategoryKey({
+			setCategoryKeys({
 				categoryKey: props.category
 					.replace(' & ', '_and_')
 					.toLowerCase(),
@@ -16,7 +17,13 @@ function Category(props) {
 	};
 
 	return (
-		<div className="category" onClick={handleClick}>
+		<div
+			className={
+				'category ' +
+				(categories.includes(props.category) ? 'selected' : '')
+			}
+			onClick={handleClick}
+		>
 			<p className="category__title">{props.category}</p>
 		</div>
 	);

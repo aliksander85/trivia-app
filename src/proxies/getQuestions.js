@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { BASE_URL } from './getCategories';
 
-export const getQuestions = async ({ categoryKey, limit, difficulty }) => {
+export const getQuestions = async ({ categoryKeys, limit, difficulty }) => {
 	const response = await axios.get(
-		`${BASE_URL}/api/questions?categories=${categoryKey}&limit=${limit}&difficulty=${difficulty}`
+		`${BASE_URL}/api/questions?categories=${categoryKeys}&limit=${limit}&difficulty=${difficulty}`
 	);
 	return response.data;
 };

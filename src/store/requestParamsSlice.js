@@ -5,8 +5,8 @@ const requestParamsSlice = createSlice({
 	initialState: {
 		limit: '5',
 		difficulty: 'easy',
-		category: '',
-		categoryKey: '',
+		categories: [],
+		categoryKeys: [],
 	},
 	reducers: {
 		setLimit(state, action) {
@@ -15,16 +15,51 @@ const requestParamsSlice = createSlice({
 		setDifficulty(state, action) {
 			state.difficulty = action.payload.difficulty;
 		},
-		setCategory(state, action) {
-			state.category = action.payload.category;
+		setCategories(state, action) {
+			const existingCategories = state.categories;
+			if (action.payload.command && action.payload.command === 'clear') {
+				state.categories = [];
+				return;
+			}
+			if (!action.payload.category) return;
+			state.categories = existingCategories.includes(
+				action.payload.category
+			)
+				? existingCategories.filter(
+						(category) => category !== action.payload.category
+				  )
+				: [
+						...new Set([
+							...existingCategories,
+							action.payload.category,
+						]),
+				  ];
 		},
-		setCategoryKey(state, action) {
-			state.categoryKey = action.payload.categoryKey;
+		setCategoryKeys(state, action) {
+			const existingCategoryKeys = state.categoryKeys;
+			if (action.payload.command && action.payload.command === 'clear') {
+				state.categoryKeys = [];
+				return;
+			}
+			if (!action.payload.categoryKeys) return;
+			state.categoryKeys = existingCategoryKeys.includes(
+				action.payload.categoryKey
+			)
+				? existingCategoryKeys.filter(
+						(categoryKey) =>
+							categoryKey !== action.payload.categoryKey
+				  )
+				: [
+						...new Set([
+							...existingCategoryKeys,
+							action.payload.categoryKey,
+						]),
+				  ];
 		},
 	},
 });
 
-export const { setLimit, setDifficulty, setCategory, setCategoryKey } =
+export const { setLimit, setDifficulty, setCategories, setCategoryKeys } =
 	requestParamsSlice.actions;
 
 export default requestParamsSlice.reducer;

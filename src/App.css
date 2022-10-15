@@ -73,6 +73,9 @@
 .category:hover {
 	background-color: #eee;
 }
+.category.selected {
+	background-color: #ddd;
+}
 .category__title {
 	align-self: center;
 	margin: 0;
