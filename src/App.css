@@ -5,6 +5,15 @@
 	display: flex;
 	flex-direction: column;
 }
+.App__header {
+}
+.App__main {
+	display: flex;
+	flex-grow: 1;
+	padding: 0 100px;
+}
+.App__footer {
+}
 .header {
 	height: 100px;
 	background-color: lightgray;
@@ -23,8 +32,6 @@
 }
 .wrapper {
 	display: flex;
-	flex-grow: 1;
-	padding: 0 100px;
 	flex-direction: column;
 }
 .categories {
@@ -81,6 +88,20 @@
 	margin: 0;
 }
 
+.difficulty {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	flex-direction: column;
+}
+.difficulty__wrapper {
+	display: block;
+}
+
+.question-card {
+	width: 100%;
+}
+
 .answers {
 	list-style-type: none;
 }
@@ -103,4 +124,7 @@
 .footer {
 	height: 100px;
 	background-color: lightgray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

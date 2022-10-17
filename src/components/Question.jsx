@@ -20,7 +20,6 @@ function Question({
 			setScore((prevScore) => prevScore + 1);
 		}
 		if (number < questionsLength - 1) {
-			console.log('setQuestion');
 			setQuestion((current) => current + 1);
 		}
 		if (number === questionsLength - 1) {

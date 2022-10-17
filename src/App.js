@@ -29,9 +29,15 @@ function App() {
 
 	return (
 		<div className="App">
-			<Header />
-			<RouterProvider router={router} />
-			<Footer />
+			<header className="App__header">
+				<Header />
+			</header>
+			<main className="App__main">
+				<RouterProvider router={router} />
+			</main>
+			<footer className="App__footer">
+				<Footer />
+			</footer>
 		</div>
 	);
 }

@@ -44,38 +44,40 @@ function Difficulty() {
 
 	return (
 		<div className="difficulty">
-			<h2>Categories: {categories.join(', ')}</h2>
-			<div>
-				<label htmlFor="difficulty">Choose difficulty level:</label>
-				<select
-					name="difficulty"
-					id="difficulty"
-					onChange={handleChangeLevel}
-					value={difficultyLevel}
-				>
-					{levels.map((level) => (
-						<option key={level.value} value={level.value}>
-							{level.text}
-						</option>
-					))}
-				</select>
+			<div className="difficulty__wrapper">
+				<h2>Categories: {categories.join(', ')}</h2>
+				<div>
+					<label htmlFor="difficulty">Choose difficulty level:</label>
+					<select
+						name="difficulty"
+						id="difficulty"
+						onChange={handleChangeLevel}
+						value={difficultyLevel}
+					>
+						{levels.map((level) => (
+							<option key={level.value} value={level.value}>
+								{level.text}
+							</option>
+						))}
+					</select>
+				</div>
+				<div>
+					<label htmlFor="limit">Choose a number of questions:</label>
+					<select
+						name="limit"
+						id="limit"
+						onChange={handleChangeLimit}
+						value={limitQuestions}
+					>
+						{limits.map((limit) => (
+							<option key={limit.value} value={limit.value}>
+								{limit.text}
+							</option>
+						))}
+					</select>
+				</div>
+				<button onClick={handleClick}>Start Quiz</button>
 			</div>
-			<div>
-				<label htmlFor="limit">Choose a number of questions:</label>
-				<select
-					name="limit"
-					id="limit"
-					onChange={handleChangeLimit}
-					value={limitQuestions}
-				>
-					{limits.map((limit) => (
-						<option key={limit.value} value={limit.value}>
-							{limit.text}
-						</option>
-					))}
-				</select>
-			</div>
-			<button onClick={handleClick}>Start Quiz</button>
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
 	return (
-		<footer className="footer">
+		<div className="footer">
 			<p className="footer__text">Alexander Potapov</p>
 			<p className="footer__text">
 				API by{' '}
@@ -15,7 +15,7 @@ function Footer() {
 					the-trivia-api.com
 				</a>
 			</p>
-		</footer>
+		</div>
 	);
 }
 
