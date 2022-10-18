@@ -41,7 +41,7 @@ const requestParamsSlice = createSlice({
 				state.categoryKeys = [];
 				return;
 			}
-			if (!action.payload.categoryKeys) return;
+			if (!action.payload.categoryKey) return;
 			state.categoryKeys = existingCategoryKeys.includes(
 				action.payload.categoryKey
 			)
