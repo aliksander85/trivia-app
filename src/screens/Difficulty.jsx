@@ -25,6 +25,10 @@ function Difficulty() {
 	];
 
 	useEffect(() => {
+		if (categories.length === 0) {
+			navigate('/');
+			return;
+		}
 		setLimitQuestions(5);
 	}, []);
 
