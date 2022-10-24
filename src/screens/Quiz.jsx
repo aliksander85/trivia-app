@@ -27,7 +27,7 @@ function Questions() {
 			setQuestions(data);
 			dispatch(setQuestionsData({ questionsData: data }));
 		});
-	}, [limit, difficulty, categoryKeys, dispatch]);
+	}, [limit, difficulty, categoryKeys, dispatch, navigate]);
 
 	return (
 		<>

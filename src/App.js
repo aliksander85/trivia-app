@@ -1,6 +1,7 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import Container from '@mui/material/Container';
 import { ColorModeContext, useMode } from './theme';
 import RandomPage from './screens/RandomPage';
 import Categories from './screens/Categories';
@@ -34,17 +35,17 @@ function App() {
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<section className="app">
+				<Box className="app">
 					<header className="app__header">
 						<Header />
 					</header>
-					<main className="app__main">
+					<Container component="main" className="app__main">
 						<RouterProvider router={router} />
-					</main>
-					<footer className="app__footer">
+					</Container>
+					<Box component="footer" className="app__footer">
 						<Footer />
-					</footer>
-				</section>
+					</Box>
+				</Box>
 			</ThemeProvider>
 		</ColorModeContext.Provider>
 	);
