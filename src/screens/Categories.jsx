@@ -37,11 +37,12 @@ function Categories() {
 				</Typography>
 				<Box className="categories__box">
 					{categories.map((category) => (
-						<Category
-							className="categories__item"
-							category={category}
+						<Box
 							key={category}
-						/>
+							className="categories__item-wrapper"
+						>
+							<Category category={category} />
+						</Box>
 					))}
 				</Box>
 				<Box className="button-wrapper">

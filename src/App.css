@@ -5,24 +5,11 @@
 	display: flex;
 	flex-direction: column;
 }
-.app__header {
-}
 .app__main {
 	display: flex;
 	flex-grow: 1;
 	padding: 0 100px;
 }
-.app__footer {
-}
-/* .header {
-	height: 100px;
-	background-color: lightgray;
-	color: darkolivegreen;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-} */
 .header__title {
 	margin: 0;
 }
@@ -41,9 +28,6 @@
 	flex-direction: column;
 	padding: 0 24px;
 }
-/* .categories__title {
-	margin-top: 20px !important;
-} */
 .categories__box {
 	/* height: 100%; */
 	align-self: center;
@@ -55,8 +39,15 @@
 	gap: 20px;
 	flex-grow: 1;
 }
-/* .categories__item {
-} */
+.categories__item-wrapper {
+	display: flex;
+	flex: 1 1 160px;
+	align-items: center;
+	justify-content: center;
+}
+.categories__item {
+	display: flex;
+}
 .button-wrapper {
 	height: 150px;
 	display: flex;
@@ -81,25 +72,19 @@
 	justify-content: center;
 	cursor: pointer;
 }
-/* .category:hover {
-	background-color: #eee;
-} */
-/* .category.selected {
-	background-color: #ddd;
-} */
 .category__title {
 	align-self: center;
 	margin: 0;
 }
 
 .difficulty {
-	display: flex;
+	display: block;
 	width: 100%;
-	justify-content: center;
-	flex-direction: column;
+	height: 100%;
 }
 .difficulty__wrapper {
 	display: block;
+	height: 100%;
 }
 
 .question-card {

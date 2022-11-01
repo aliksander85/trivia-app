@@ -26,7 +26,7 @@ function Category(props) {
 	return (
 		<Card
 			className={
-				'category ' +
+				'category categories__item ' +
 				(categories.includes(props.category) ? 'selected' : '')
 			}
 			sx={{

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLimit, setDifficulty } from '../store/requestParamsSlice';
+import { Box, Typography } from '@mui/material';
 
 function Difficulty() {
 	const [difficultyLevel, setDifficultyLevel] = useState('easy');
@@ -30,7 +31,7 @@ function Difficulty() {
 			return;
 		}
 		setLimitQuestions(5);
-	}, []);
+	}, [categories.length, navigate]);
 
 	const handleChangeLimit = (e) => {
 		setLimitQuestions(e.target.value);
@@ -47,42 +48,50 @@ function Difficulty() {
 	};
 
 	return (
-		<div className="difficulty">
-			<div className="difficulty__wrapper">
-				<h2>Categories: {categories.join(', ')}</h2>
-				<div>
-					<label htmlFor="difficulty">Choose difficulty level:</label>
-					<select
-						name="difficulty"
-						id="difficulty"
-						onChange={handleChangeLevel}
-						value={difficultyLevel}
-					>
-						{levels.map((level) => (
-							<option key={level.value} value={level.value}>
-								{level.text}
-							</option>
-						))}
-					</select>
-				</div>
-				<div>
-					<label htmlFor="limit">Choose a number of questions:</label>
-					<select
-						name="limit"
-						id="limit"
-						onChange={handleChangeLimit}
-						value={limitQuestions}
-					>
-						{limits.map((limit) => (
-							<option key={limit.value} value={limit.value}>
-								{limit.text}
-							</option>
-						))}
-					</select>
-				</div>
-				<button onClick={handleClick}>Start Quiz</button>
-			</div>
-		</div>
+		<Box className="difficulty">
+			<Typography variant="h2">
+				Categories: {categories.join(', ')}
+			</Typography>
+			<Box className="difficulty__wrapper">
+				<Box sx={{ display: 'block' }}>
+					<Box>
+						<label htmlFor="difficulty">
+							Choose difficulty level:
+						</label>
+						<select
+							name="difficulty"
+							id="difficulty"
+							onChange={handleChangeLevel}
+							value={difficultyLevel}
+						>
+							{levels.map((level) => (
+								<option key={level.value} value={level.value}>
+									{level.text}
+								</option>
+							))}
+						</select>
+					</Box>
+					<Box>
+						<label htmlFor="limit">
+							Choose a number of questions:
+						</label>
+						<select
+							name="limit"
+							id="limit"
+							onChange={handleChangeLimit}
+							value={limitQuestions}
+						>
+							{limits.map((limit) => (
+								<option key={limit.value} value={limit.value}>
+									{limit.text}
+								</option>
+							))}
+						</select>
+					</Box>
+					<button onClick={handleClick}>Start Quiz</button>
+				</Box>
+			</Box>
+		</Box>
 	);
 }
 
