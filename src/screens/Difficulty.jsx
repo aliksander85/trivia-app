@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+	Box,
+	Button,
+	InputLabel,
+	MenuItem,
+	Select,
+	Typography,
+	useTheme,
+} from '@mui/material';
 import { setLimit, setDifficulty } from '../store/requestParamsSlice';
-import { Box, Typography } from '@mui/material';
+import { tokens } from '../theme';
 
 function Difficulty() {
 	const [difficultyLevel, setDifficultyLevel] = useState('easy');
@@ -10,6 +19,8 @@ function Difficulty() {
 	const navigate = useNavigate();
 	const categories = useSelector((state) => state.requestParams.categories);
 	const dispatch = useDispatch();
+	const theme = useTheme();
+	const colors = tokens(theme.palette.mode);
 
 	const limits = [];
 	let i = 1;
@@ -52,43 +63,65 @@ function Difficulty() {
 			<Typography variant="h2">
 				Categories: {categories.join(', ')}
 			</Typography>
-			<Box className="difficulty__wrapper">
-				<Box sx={{ display: 'block' }}>
-					<Box>
-						<label htmlFor="difficulty">
-							Choose difficulty level:
-						</label>
-						<select
-							name="difficulty"
-							id="difficulty"
-							onChange={handleChangeLevel}
-							value={difficultyLevel}
+			<Box className="difficulty__content">
+				<Box className="difficulty__wrapper">
+					<Box sx={{ display: 'block' }}>
+						<Box sx={{ marginBottom: '50px' }}>
+							<InputLabel id="choose-difficulty-label">
+								Choose difficulty level:
+							</InputLabel>
+							<Select
+								labelId="choose-difficulty-label"
+								id="difficulty"
+								value={difficultyLevel}
+								onChange={handleChangeLevel}
+								label="Difficulty"
+							>
+								{levels.map((level) => (
+									<MenuItem
+										key={level.value}
+										value={level.value}
+									>
+										{level.text}
+									</MenuItem>
+								))}
+							</Select>
+						</Box>
+						<Box sx={{ marginBottom: '50px' }}>
+							<InputLabel id="limit-label">
+								Choose a number of questions:
+							</InputLabel>
+							<Select
+								labelId="limit-label"
+								id="limit"
+								value={limitQuestions}
+								onChange={handleChangeLimit}
+								label="Number of Questions"
+							>
+								{limits.map((limit) => (
+									<MenuItem
+										key={limit.value}
+										value={limit.value}
+									>
+										{limit.text}
+									</MenuItem>
+								))}
+							</Select>
+						</Box>
+						<Button
+							className="main-button"
+							variant="contained"
+							sx={{
+								background: colors.blueAccent[500],
+								':hover, :active, :focus': {
+									background: colors.blueAccent[600],
+								},
+							}}
+							onClick={handleClick}
 						>
-							{levels.map((level) => (
-								<option key={level.value} value={level.value}>
-									{level.text}
-								</option>
-							))}
-						</select>
+							Start Quiz
+						</Button>
 					</Box>
-					<Box>
-						<label htmlFor="limit">
-							Choose a number of questions:
-						</label>
-						<select
-							name="limit"
-							id="limit"
-							onChange={handleChangeLimit}
-							value={limitQuestions}
-						>
-							{limits.map((limit) => (
-								<option key={limit.value} value={limit.value}>
-									{limit.text}
-								</option>
-							))}
-						</select>
-					</Box>
-					<button onClick={handleClick}>Start Quiz</button>
 				</Box>
 			</Box>
 		</Box>
