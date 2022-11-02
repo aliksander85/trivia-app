@@ -77,6 +77,11 @@
 	margin: 0;
 }
 
+.page-title {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .difficulty {
 	display: flex;
 	width: 100%;
@@ -105,19 +110,19 @@
 }
 
 .answer {
-	background-color: #333;
+	border-radius: 4px;
 	color: #fff;
 	cursor: pointer;
-	height: 40px;
+	min-height: 40px;
 	line-height: 40px;
 	margin-bottom: 10px;
 }
-.answer:hover {
+/* .answer:hover {
 	background-color: #444;
 }
 .answer.selected {
 	background-color: #555;
-}
+} */
 
 .footer {
 	height: 100px;

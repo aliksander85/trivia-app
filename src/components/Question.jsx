@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Button, List, Typography, useTheme } from '@mui/material';
+import { tokens } from '../theme';
+import Answer from './Answer';
 
 function Question({
 	setIsFinish,
@@ -10,6 +13,8 @@ function Question({
 	question,
 }) {
 	const [currentAnswer, setCurrentAnswer] = useState('');
+	const theme = useTheme();
+	const colors = tokens(theme.palette.mode);
 
 	const handleClickAnswer = (answer) => {
 		setCurrentAnswer(answer);
@@ -30,26 +35,33 @@ function Question({
 	return (
 		<>
 			<h2 className="question-card__title">{question.question}</h2>
-			<ul className="question-card__list answers">
+			<List className="question-card__list answers">
 				{answers.map((answer) => (
-					<li
-						className={
-							'answers__item answer ' +
-							(answer === currentAnswer ? 'selected' : '')
-						}
+					<Answer
 						key={answer}
-						onClick={() => handleClickAnswer(answer)}
-					>
-						{answer}
-					</li>
+						answer={answer}
+						currentAnswer={currentAnswer}
+						handleClickAnswer={handleClickAnswer}
+					/>
 				))}
-			</ul>
-			<p>
+			</List>
+			<Typography>
 				Question {number + 1}/{questionsLength}
-			</p>
-			<button onClick={handleClickNext}>
+			</Typography>
+			<Button
+				className="main-button"
+				variant="contained"
+				sx={{
+					background: colors.blueAccent[500],
+					':hover, :active, :focus': {
+						background: colors.blueAccent[600],
+					},
+					marginTop: '20px',
+				}}
+				onClick={handleClickNext}
+			>
 				{number >= questionsLength - 1 ? 'Finish' : 'Next'}
-			</button>
+			</Button>
 		</>
 	);
 }

@@ -60,7 +60,7 @@ function Difficulty() {
 
 	return (
 		<Box className="difficulty">
-			<Typography variant="h2">
+			<Typography variant="h2" className="page-title">
 				Categories: {categories.join(', ')}
 			</Typography>
 			<Box className="difficulty__content">
