@@ -30,7 +30,8 @@ function Categories() {
 			<Container className="categories__container">
 				<Typography
 					variant="h2"
-					className="categories__title page-title"
+					className="categories__title"
+					sx={{ marginTop: '20px', marginBottom: '20px' }}
 				>
 					Choose category
 				</Typography>
