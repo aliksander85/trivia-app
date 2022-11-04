@@ -33,7 +33,7 @@ function Categories() {
 					className="categories__title"
 					sx={{ marginTop: '20px', marginBottom: '20px' }}
 				>
-					Choose category
+					Choose one or more categories
 				</Typography>
 				<Box className="categories__box">
 					{categories.map((category) => (
