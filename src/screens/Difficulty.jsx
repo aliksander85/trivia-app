@@ -70,7 +70,10 @@ function Difficulty() {
 				<Box className="difficulty__wrapper">
 					<Box sx={{ display: 'block' }}>
 						<Box sx={{ marginBottom: '50px' }}>
-							<InputLabel id="choose-difficulty-label">
+							<InputLabel
+								id="choose-difficulty-label"
+								sx={{ marginBottom: '10px' }}
+							>
 								Choose difficulty level:
 							</InputLabel>
 							<Select
@@ -91,7 +94,10 @@ function Difficulty() {
 							</Select>
 						</Box>
 						<Box sx={{ marginBottom: '50px' }}>
-							<InputLabel id="limit-label">
+							<InputLabel
+								id="limit-label"
+								sx={{ marginBottom: '10px' }}
+							>
 								Choose a number of questions:
 							</InputLabel>
 							<Select
