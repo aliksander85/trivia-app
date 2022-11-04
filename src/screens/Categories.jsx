@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Container, Typography, useTheme } from '@mui/material';
 import { setCategoryData } from '../store/categorySlice';
 import Category from '../components/Category';
@@ -9,6 +9,9 @@ import { tokens } from '../theme';
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
+	const selectedCategories = useSelector(
+		(state) => state.requestParams.categories
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const theme = useTheme();
@@ -22,6 +25,7 @@ function Categories() {
 	}, [dispatch]);
 
 	const handleClick = () => {
+		if (!selectedCategories.length) return;
 		navigate('/difficulty');
 	};
 
@@ -55,6 +59,7 @@ function Categories() {
 								background: colors.blueAccent[600],
 							},
 						}}
+						disabled={!selectedCategories.length}
 						onClick={handleClick}
 					>
 						Set Categories
