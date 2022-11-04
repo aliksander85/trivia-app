@@ -9,6 +9,7 @@ import Difficulty from './screens/Difficulty';
 import Header from './components/Header';
 import Quiz from './screens/Quiz';
 import Footer from './components/Footer';
+import PageNotFound from './screens/PageNotFound';
 
 function App() {
 	const [theme, colorMode] = useMode();
@@ -28,6 +29,10 @@ function App() {
 		{
 			path: '/quiz',
 			element: <Quiz />,
+		},
+		{
+			path: '*',
+			element: <PageNotFound />,
 		},
 	]);
 
