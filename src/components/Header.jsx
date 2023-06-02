@@ -16,6 +16,7 @@ function Header() {
 				backgroundColor: colors.grey[900],
 				display: 'flex',
 				justifyContent: 'space-between',
+				alignItems: 'center',
 				padding: 2,
 			}}
 		>
@@ -37,8 +38,11 @@ function Header() {
 					Quiz
 				</Link>
 			</Typography>
-			<Box display="flex">
-				<IconButton onClick={colorMode.toggleColorMode}>
+			<Box sx={{ width: 40, height: 40 }} display="flex">
+				<IconButton
+					sx={{ width: 40, height: 40 }}
+					onClick={colorMode.toggleColorMode}
+				>
 					{theme.palette.mode === 'light' ? (
 						<DarkModeOutlinedIcon />
 					) : (
