@@ -1,5 +1,5 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import Container from '@mui/material/Container';
 import { ColorModeContext, useMode } from './theme';
@@ -13,7 +13,7 @@ import PageNotFound from './screens/PageNotFound';
 
 function App() {
 	const [theme, colorMode] = useMode();
-	const router = createBrowserRouter([
+	const router = createHashRouter([
 		{
 			path: '/',
 			element: <Categories />,
