@@ -97,15 +97,29 @@ function Header() {
 						'aria-labelledby': 'basic-button',
 					}}
 				>
-					<MenuItem onClick={() => handleMenuItemClick('os-default')}>
+					<MenuItem
+						selected={colorMode.userTheme === 'os-default'}
+						onClick={() => handleMenuItemClick('os-default')}
+					>
 						<BrightnessMediumIcon />
 						&nbsp; OS default
 					</MenuItem>
-					<MenuItem onClick={() => handleMenuItemClick('light')}>
+					<MenuItem
+						selected={colorMode.userTheme === 'light'}
+						onClick={() => handleMenuItemClick('light')}
+					>
 						<LightModeIcon />
 						&nbsp; Light
 					</MenuItem>
-					<MenuItem onClick={() => handleMenuItemClick('dark')}>
+					<MenuItem
+						sx={{
+							'&.Mui-selected': {
+								backgroundColor: colors.primary[600],
+							},
+						}}
+						selected={colorMode.userTheme === 'dark'}
+						onClick={() => handleMenuItemClick('dark')}
+					>
 						<DarkModeIcon />
 						&nbsp; Dark
 					</MenuItem>
