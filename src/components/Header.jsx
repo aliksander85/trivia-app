@@ -1,13 +1,52 @@
-import { Box, IconButton, Link, Typography, useTheme } from '@mui/material';
-import { useContext } from 'react';
+import {
+	Box,
+	IconButton,
+	Link,
+	Menu,
+	MenuItem,
+	Typography,
+	useTheme,
+} from '@mui/material';
+import { useContext, useState } from 'react';
 import { ColorModeContext, tokens } from '../theme';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import BrightnessMediumIcon from '@mui/icons-material/BrightnessMedium';
 
 function Header() {
+	const [anchorEl, setAnchorEl] = useState(null);
+	const open = Boolean(anchorEl);
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 	const colorMode = useContext(ColorModeContext);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+	const chooseTheme = (mode) => {
+		colorMode.setColorMode(mode);
+	};
+	const handleMenuItemClick = (mode) => {
+		setAnchorEl(null);
+		chooseTheme(mode);
+	};
+
+	let iconEl;
+	switch (colorMode.userTheme) {
+		case 'light':
+			iconEl = <LightModeIcon />;
+			break;
+		case 'dark':
+			iconEl = <DarkModeIcon />;
+			break;
+		case 'os-default':
+		default:
+			iconEl = <BrightnessMediumIcon />;
+			break;
+	}
 
 	return (
 		<Box
@@ -38,17 +77,39 @@ function Header() {
 					Quiz
 				</Link>
 			</Typography>
-			<Box sx={{ width: 40, height: 40 }} display="flex">
+			<Box display="flex">
 				<IconButton
-					sx={{ width: 40, height: 40 }}
-					onClick={colorMode.toggleColorMode}
+					sx={{ borderRadius: 4 }}
+					aria-controls={open ? 'basic-menu' : undefined}
+					aria-haspopup="true"
+					aria-expanded={open ? 'true' : undefined}
+					onClick={handleClick}
 				>
-					{theme.palette.mode === 'light' ? (
-						<DarkModeOutlinedIcon />
-					) : (
-						<LightModeOutlinedIcon />
-					)}
+					{iconEl}
+					&nbsp;
+					<Typography variant="button">Theme</Typography>
 				</IconButton>
+				<Menu
+					anchorEl={anchorEl}
+					open={open}
+					onClose={handleClose}
+					MenuListProps={{
+						'aria-labelledby': 'basic-button',
+					}}
+				>
+					<MenuItem onClick={() => handleMenuItemClick('os-default')}>
+						<BrightnessMediumIcon />
+						&nbsp; OS default
+					</MenuItem>
+					<MenuItem onClick={() => handleMenuItemClick('light')}>
+						<LightModeIcon />
+						&nbsp; Light
+					</MenuItem>
+					<MenuItem onClick={() => handleMenuItemClick('dark')}>
+						<DarkModeIcon />
+						&nbsp; Dark
+					</MenuItem>
+				</Menu>
 			</Box>
 		</Box>
 	);

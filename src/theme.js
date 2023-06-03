@@ -1,5 +1,7 @@
-import { createContext, useState, useMemo } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme } from '@mui/material/styles';
+import useLocalStorage from './hooks/useLocalStorage';
 
 // color design tokens
 // #666666 - grey
@@ -201,17 +203,42 @@ export const themeSettings = (mode) => {
 // context for color mode
 export const ColorModeContext = createContext({
 	toggleColorMode: () => {},
+	setColorMode: () => {},
+	userTheme: 'os-default',
 });
 
 export const useMode = () => {
 	const [mode, setMode] = useState('dark');
+	const [userTheme, setUserTheme] = useLocalStorage('theme');
+	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+	useEffect(() => {
+		let chosenMode;
+		switch (userTheme) {
+			case 'light':
+				chosenMode = 'light';
+				break;
+			case 'dark':
+				chosenMode = 'dark';
+				break;
+			case 'os-default':
+			default:
+				chosenMode = prefersDarkMode ? 'dark' : 'light';
+				break;
+		}
+		setMode(chosenMode);
+	}, [prefersDarkMode, userTheme]);
 
 	const colorMode = useMemo(
 		() => ({
 			toggleColorMode: () =>
 				setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
+			setColorMode: (selectedMode) => {
+				setUserTheme(selectedMode);
+			},
+			userTheme: userTheme,
 		}),
-		[]
+		[userTheme, setUserTheme]
 	);
 
 	const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
